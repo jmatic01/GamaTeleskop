@@ -1,0 +1,14 @@
+README.txt
+setup.cfg
+setup.py
+cta_project/__init__.py
+cta_project/resources.py
+cta_project/tests.py
+cta_project/views.py
+cta_project.egg-info/PKG-INFO
+cta_project.egg-info/SOURCES.txt
+cta_project.egg-info/dependency_links.txt
+cta_project.egg-info/entry_points.txt
+cta_project.egg-info/not-zip-safe
+cta_project.egg-info/requires.txt
+cta_project.egg-info/top_level.txt

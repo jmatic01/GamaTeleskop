@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="${request.locale_name}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="FESB">
+    <link rel="shortcut icon" href="${request.static_url('cta_project:static/css/images/MAGIC_logo_black.png')}">
+	
+    <title>Long term monitoring</title>
+
+
+    <!-- Custom styles for this scaffold -->
+	
+	<link href="${request.static_url('cta_project:static/css/bootstrap.min.css')}" rel="stylesheet" media="screen">
+    <link href="${request.static_url('cta_project:static/css/bootstrap-responsive.min.css')}" rel="stylesheet" media="screen">
+    <link href="${request.static_url('cta_project:static/css/bootstrap-select.min.css')}" rel="stylesheet" media="screen">
+    <link href="${request.static_url('cta_project:static/css/select2.css')}" rel="stylesheet" media="screen">
+    <link href="${request.static_url('cta_project:static/css/tablecloth.css')}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="${request.static_url('cta_project:static/css/jquery-ui-1.9.2.custom.css')}">
+	<link rel="stylesheet" type="text/css" href="${request.static_url('cta_project:static/css/main.css')}">
+	<script src="${request.static_url('cta_project:static/js/jquery-1.9.1.js')}"></script>
+	<script src="${request.static_url('cta_project:static/js/bootstrap.min.js')}"></script>
+	<script src="${request.static_url('cta_project:static/js/bootstrap-select.min.js')}"></script>
+	<script src="${request.static_url('cta_project:static/js/jquery.metadata.js')}"></script>
+	<script src="${request.static_url('cta_project:static/js/jquery.tablecloth.js')}"></script>
+	<script src="${request.static_url('cta_project:static/js/jquery.tablesorter.min.js')}"></script>
+	<script src="${request.static_url('cta_project:static/js/jquery-ui-1.9.2.custom.min.js')}"></script>
+        <script type="text/javascript" src="${request.static_url('cta_project:static/js/dygraph-combined.js')}"></script>
+
+	<script src="${request.static_url('cta_project:static/js/main.js')}"></script>
+	<script src="${request.static_url('cta_project:static/js/button.js')}"></script>
+
+  </head>
+
+ <body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="?"><img src="${request.static_url('cta_project:static/css/images/MAGIC_logo_black.png')}" alt="MAGIC logo" width="30" height="30">MAGIC Long Term Monitoring</a>
+          <div class="nav-collapse collapse pull-right">
+            <ul class="nav">
+                              <li class="active"><a href="?p=data">data</a></li>
+                              <li><a href="http://www.magic.iac.es/operations/datacheck/" target="_blank">MAGIC Datacheck</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+	<div class="main-wrap container">
+	<form id="input-form" action="?" method="get" class=" ">
+	<input type="hidden" name="action" value="macro">
+
+	
+	<div class="container-fluid pull-left input-wrap">
+		
+		<div class="">
+			<div class="inputrow">
+
+				<fieldset>
+					<legend>Param X</legend>
+			    	<select name="param1-telescope" id="param1-telescope" class="selectpicker" data-live-search="true" style="display: none;">
+						<option class="spec_t1" selected="">M1</option>
+						<option class="spec_t1">M2</option>
+					</select>
+					<br>
+					<select name="param1" id = "param1" class="selectpicker" data-live-search="true" style="display: none;">
+														<option value="selectparam1" selected="">Select first parameter</option>
+						<optgroup label="DAQ">
+														<option class ="parameterx" value="calq_cal">Calibration runs: Calibration Charge</option>
+														<option class ="parameterx" value="calq_int">Interleaved runs: Calibration Charge</option>
+														<option class ="parameterx" value="calq_sig">Charge for Signal Events</option>
+														<option class ="parameterx" value="bias_sig">Bias of Signal Extractor</option>
+														<option class ="parameterx" value="hitfrac_sig">Hit Fraction of Signal Events</option>
+														<option class ="parameterx" value="arrtm_cal">Calibration runs: Arrival Time</option>
+														<option class ="parameterx" value="arrtm_int">Interleaved runs: Arrival Time</option>
+														<option class ="parameterx" value="arrtm_sig">Signal events: Arrival Time</option>
+														<option class ="parameterx" value="arrtmrms_cal">Calibration runs: Arrival Time RMS</option>
+														<option class ="parameterx" value="arrtmrms_int">Interleaved runs: Arrival Time RMS</option>
+														<option class ="parameterx" value="arrtmrms_sig">Signal events: Arrival Time RMS</option>
+														<option class ="parameterx" value="ped_ped">Pedestal runs: Pedestal</option>
+														<option class ="parameterx" value="ped_int">Interleaved runs: Pedestal</option>
+														<option class ="parameterx" value="npe_int">Interleaved runs: Number of Photoelectrons</option>
+														<option class ="parameterx" value="pedrms_ped">Pedestal runs: Pedestal RMS</option>
+														<option class ="parameterx" value="pedrms_int">Interleaved runs: Pedestal RMS</option>
+														<option class ="parameterx" value="cfact_int">Interleaved runs: C Factor</option>
+												</optgroup>
+						<optgroup label="Central control">
+														<option class ="parameterx" value="drvzd">Zenith angle</option>
+														<option class ="parameterx" value="drvdev_daq">Control Deviation of the Motors, DAQ data</option>
+														<option class ="parameterx" value="camhv_daq">Camera HV, DAQ data</option>
+														<option class ="parameterx" value="camdc_daq">Camera DC, DAQ data</option>
+														<option class ="parameterx" value="camdt_daq">Discriminator Threshold, DAQ data</option>
+														<option class ="parameterx" value="campd_daq">PD, DAQ data</option>
+														<option class ="parameterx" value="campixtemp_daq">Pixel Temperature Camera, DAQ data</option>
+														<option class ="parameterx" value="meanpixtemp_daq">Pixel Temperature, DAQ data</option>
+														<option class ="parameterx" value="camclusttemp">(Non-zero) Cluster Temperature</option>
+														<option class ="parameterx" value="camvcelbias_daq">VCELs bias, DAQ data</option>
+														<option class ="parameterx" value="camlv1temp">LV1 Temperature</option>
+														<option class ="parameterx" value="camlv2temp">LV2 Temperature</option>
+														<option class ="parameterx" value="camlv1hum">LV1 Humidity</option>
+														<option class ="parameterx" value="camlv2hum">LV2 Humidity</option>
+														<option class ="parameterx" value="camcoolfcptopleft">Camera Cooling: FCPTopLeft Temperature</option>
+														<option class ="parameterx" value="camcoolfcpbottright">Camera Cooling: FCPBottRight Temperature</option>
+														<option class ="parameterx" value="camcoolrcptopleft">Camera Cooling: RCPTopLeft Temperature</option>
+														<option class ="parameterx" value="camcoolrcpbottright">Camera Cooling: RCPBottRight Temperature</option>
+														<option class ="parameterx" value="camcoolchasiastopleft">Camera Cooling: ChasiasTopLeft Temperature</option>
+														<option class ="parameterx" value="camcoolchasiasbottright">Camera Cooling: ChasiasBottRight Temperature</option>
+														<option class ="parameterx" value="camcoolchasiasftopleft">Camera Cooling: ChasiasFTopLeft Temperature</option>
+														<option class ="parameterx" value="camcoolchasiasfbottright">Camera Cooling: ChasiasFBottRight Temperature</option>
+														<option class ="parameterx" value="camcoolrearbottleft">Camera Cooling: RearBottLeft Humidity </option>
+														<option class ="parameterx" value="camcoolreartopleft">Camera Cooling: RearTopLeft Humidity</option>
+														<option class ="parameterx" value="camcoolfrontbottright">Camera Cooling: FrontBottRight Humidity </option>
+														<option class ="parameterx" value="camcoolfronttopright">Camera Cooling: FrontTopRight Humidity</option>
+														<option class ="parameterx" value="amcerr">AMC Number of Panels in Error State</option>
+														<option class ="parameterx" value="l1t">L1 Trigger Rate (Before Prescaler)</option>
+														<option class ="parameterx" value="l2t">L2 Trigger Rate (After Prescaler)</option>
+														<option class ="parameterx" value="l2t_daq">L2 Trigger Rate (After Prescaler), DAQ data</option>
+														<option class ="parameterx" value="sumt_globr">Sum-Trigger-II Global Rate</option>
+														<option class ="parameterx" value="sumt_l3">Sum-Trigger-II L3 Trigger Rate</option>
+														<option class ="parameterx" value="sumt_dtw">Sum-Trigger-II Working Thresholds</option>
+														<option class ="parameterx" value="sumt_cbt">Sum-Trigger-II Clip board temperatures</option>
+														<option class ="parameterx" value="calbtemp1">Calibration Box Temperature</option>
+														<option class ="parameterx" value="calbtemp2">Calibration Box Temperature, next to heating plate</option>
+														<option class ="parameterx" value="calbhum">Calibration Box Humidity</option>
+														<option class ="parameterx" value="sg_devaz">Azimuthal Misspointing * Sin(Zenith)</option>
+														<option class ="parameterx" value="sg_devzd">Zenith Misspointing</option>
+														<option class ="parameterx" value="sg_camcx">Camera Centre X</option>
+														<option class ="parameterx" value="sg_camcy">Camera Centre Y</option>
+														<option class ="parameterx" value="sg_stars">Number of Correlated Stars</option>
+														<option class ="parameterx" value="sg_bright">Sky Brightness</option>
+														<option class ="parameterx" value="wea_temp">Atmospheric Temperature</option>
+														<option class ="parameterx" value="wea_hum">Atmospheric Humidity</option>
+														<option class ="parameterx" value="wea_ws">Wind Speed</option>
+														<option class ="parameterx" value="wea_gust">Wind Gusts</option>
+														<option class ="parameterx" value="wea_see">Seeing (from TNG)</option>
+														<option class ="parameterx" value="wea_dust">Dust concentration (from TNG)</option>
+														<option class ="parameterx" value="rec_temp">Recievers Temperature</option>
+														<option class ="parameterx" value="camtd_daq">Trigger Delay, DAQ data </option>
+														<option class ="parameterx" value="camipr_daq">IPR, DAQ data</option>
+														<option class ="parameterx" value="camiprerr_daq">IPR Error, DAQ data</option>
+														<option class ="parameterx" value="pyro_cloud">Pyrometer, Cloudiness</option>
+														<option class ="parameterx" value="pyro_skyt">Pyrometer, Sky Temperature</option>
+														<option class ="parameterx" value="muon_psf">PSF from muons</option>
+														<option class ="parameterx" value="muon_psfn">Number of muons for PSF calc</option>
+														<option class ="parameterx" value="muon_size">Mean muon size</option>
+												</optgroup>
+					</select>							
+					<br>
+					<select name="param1-type" id="param1-type" class="selectpicker" style="display: none;">
+						<option selected="">Mean</option>
+						<option>Median</option>
+						<option>Max</option>
+						<option>Min</option>
+						<option>RMS</option>
+					</select>
+					<div class="checkbox">
+						<label for="p1errors">
+							<input type="hidden" name="param1_errors" value="false">
+							<input type="checkbox" name="param1_errors" id="p1errors" value="true">
+							Histogram X
+						</label>
+					</div>
+				</fieldset>
+			</div>
+
+			<script type="text/javascript">
+			$('#param1-type').change(function(){
+				var val = $(this).val();
+				//alert(val)
+				if(val=="Mean" || val=="Median")
+				{
+					$('#p1errors').parent().show()
+				} else {
+					$('#p1errors').attr('checked',null).parent().hide()
+				}
+			})
+			</script>
+
+			<div class="inputrow">
+				<fieldset>
+					<legend>Param Y</legend>
+					<select name="param2-telescope" id="param2-telescope" class="selectpicker" style="display: none;">
+						<option class="spec_t2" selected="">M1</option>
+						<option class="spec_t2">M2</option>
+					</select>
+					<br>
+					<select name="param2" id="param2" class="selectpicker" style="display: none;">
+														<option value="selectparam2" selected="">Select second parameter</option>
+						<optgroup label="DAQ">
+														<option class = "parametery" value="calq_cal">Calibration runs: Calibration Charge</option>
+														<option class = "parametery" value="calq_int">Interleaved runs: Calibration Charge</option>
+														<option class = "parametery" value="calq_sig">Charge for Signal Events </option>
+														<option class = "parametery" value="bias_sig">Bias of Signal Extractor </option>
+														<option class = "parametery" value="hitfrac_sig">Hit Fraction of Signal Events </option>
+														<option class = "parametery" value="arrtm_cal">Calibration runs: Arrival Time</option>
+														<option class = "parametery" value="arrtm_int">Interleaved runs: Arrival Time</option>
+														<option class = "parametery" value="arrtm_sig">Signal events: Arrival Time</option>
+														<option class = "parametery" value="arrtmrms_cal">Calibration runs: Arrival Time RMS </option>
+														<option class = "parametery" value="arrtmrms_int">Interleaved runs: Arrival Time RMS</option>
+														<option class = "parametery" value="arrtmrms_sig">Signal events: Arrival Time RMS</option>
+														<option class = "parametery" value="ped_ped">Pedestal runs: Pedestal</option>
+														<option class = "parametery" value="ped_int">Interleaved runs: Pedestal</option>
+														<option class = "parametery" value="npe_int">Interleaved runs: Number of Photoelectrons</option>
+														<option class = "parametery" value="pedrms_ped">Pedestal runs: Pedestal RMS</option>
+														<option class = "parametery" value="pedrms_int">Interleaved runs: Pedestal RMS</option>
+														<option class = "parametery" value="cfact_int">Interleaved runs: C Factor</option>
+												</optgroup>
+						<optgroup label="Central control">
+														<option class = "parametery" value="drvzd">Zenith angle</option>
+														<option class = "parametery" value="drvdev_daq">Control Deviation of the Motors, DAQ data</option>
+														<option class = "parametery" value="camhv_daq">Camera HV, DAQ data</option>
+														<option class = "parametery" value="camdc_daq">Camera DC, DAQ data</option>
+														<option class = "parametery" value="camdt_daq">Discriminator Threshold, DAQ data</option>
+														<option class = "parametery" value="campd_daq">PD, DAQ data</option>
+														<option class = "parametery" value="campixtemp_daq">Pixel Temperature Camera, DAQ data</option>
+														<option class = "parametery" value="meanpixtemp_daq">Pixel Temperature, DAQ data</option>
+														<option class = "parametery" value="camclusttemp">(Non-zero) Cluster Temperature</option>
+														<option class = "parametery" value="camvcelbias_daq">VCELs bias, DAQ data</option>
+														<option class = "parametery" value="camlv1temp">LV1 Temperature</option>
+														<option class = "parametery" value="camlv2temp">LV2 Temperature</option>
+														<option class = "parametery" value="camlv1hum">LV1 Humidity</option>
+														<option class = "parametery" value="camlv2hum">LV2 Humidity</option>
+														<option class = "parametery" value="camcoolfcptopleft">Camera Cooling: FCPTopLeft Temperature</option>
+														<option class = "parametery" value="camcoolfcpbottright">Camera Cooling: FCPBottRight Temperature</option>
+														<option class = "parametery" value="camcoolrcptopleft">Camera Cooling: RCPTopLeft Temperature</option>
+														<option class = "parametery" value="camcoolrcpbottright">Camera Cooling: RCPBottRight Temperature</option>
+														<option class = "parametery" value="camcoolchasiastopleft">Camera Cooling: ChasiasTopLeft Temperature</option>
+														<option class = "parametery" value="camcoolchasiasbottright">Camera Cooling: ChasiasBottRight Temperature</option>
+														<option class = "parametery" value="camcoolchasiasftopleft">Camera Cooling: ChasiasFTopLeft Temperature</option>
+														<option class = "parametery" value="camcoolchasiasfbottright">Camera Cooling: ChasiasFBottRight Temperature</option>
+														<option class = "parametery" value="camcoolrearbottleft">Camera Cooling: RearBottLeft Humidity </option>
+														<option class = "parametery" value="camcoolreartopleft">Camera Cooling: RearTopLeft Humidity</option>
+														<option class = "parametery" value="camcoolfrontbottright">Camera Cooling: FrontBottRight Humidity </option>
+														<option class = "parametery" value="camcoolfronttopright">Camera Cooling: FrontTopRight Humidity</option>
+														<option class = "parametery" value="amcerr">AMC Number of Panels in Error State</option>
+														<option class = "parametery" value="l1t">L1 Trigger Rate (Before Prescaler)</option>
+														<option class = "parametery" value="l2t">L2 Trigger Rate (After Prescaler)</option>
+														<option class = "parametery" value="l2t_daq">L2 Trigger Rate (After Prescaler), DAQ data</option>
+														<option class = "parametery" value="sumt_globr">Sum-Trigger-II Global Rate</option>
+														<option class = "parametery" value="sumt_l3">Sum-Trigger-II L3 Trigger Rate</option>
+														<option class = "parametery" value="sumt_dtw">Sum-Trigger-II Working Thresholds</option>
+														<option class = "parametery" value="sumt_cbt">Sum-Trigger-II Clip board temperatures</option>
+														<option class = "parametery" value="calbtemp1">Calibration Box Temperature</option>
+														<option class = "parametery" value="calbtemp2">Calibration Box Temperature, next to heating plate</option>
+														<option class = "parametery" value="calbhum">Calibration Box Humidity</option>
+														<option class = "parametery" value="sg_devaz">Azimuthal Misspointing * Sin(Zenith)</option>
+														<option class = "parametery" value="sg_devzd">Zenith Misspointing</option>
+														<option class = "parametery" value="sg_camcx">Camera Centre X</option>
+														<option class = "parametery" value="sg_camcy">Camera Centre Y</option>
+														<option class = "parametery" value="sg_stars">Number of Correlated Stars</option>
+														<option class = "parametery" value="sg_bright">Sky Brightness</option>
+														<option class = "parametery" value="wea_temp">Atmospheric Temperature</option>
+														<option class = "parametery" value="wea_hum">Atmospheric Humidity</option>
+														<option class = "parametery" value="wea_ws">Wind Speed</option>
+														<option class = "parametery" value="wea_gust">Wind Gusts</option>
+														<option class = "parametery" value="wea_see">Seeing (from TNG)</option>
+														<option class = "parametery" value="wea_dust">Dust concentration (from TNG)</option>
+														<option class = "parametery" value="rec_temp">Recievers Temperature</option>
+														<option class = "parametery" value="camtd_daq">Trigger Delay, DAQ data </option>
+														<option class = "parametery" value="camipr_daq">IPR, DAQ data</option>
+														<option class = "parametery" value="camiprerr_daq">IPR Error, DAQ data</option>
+														<option class = "parametery" value="pyro_cloud">Pyrometer, Cloudiness</option>
+														<option class = "parametery" value="pyro_skyt">Pyrometer, Sky Temperature</option>
+														<option class = "parametery" value="muon_psf">PSF from muons</option>
+														<option class = "parametery" value="muon_psfn">Number of muons for PSF calc</option>
+														<option class = "parametery" value="muon_size">Mean muon size</option>
+												</optgroup>
+					</select>
+					<br>
+					<select name="param2-type" id="param2-type" class="selectpicker" style="display: none;">
+						<option selected="">Mean</option>
+						<option>Median</option>
+						<option>Max</option>
+						<option>Min</option>
+						<option>RMS</option>
+					</select>
+					<div class="checkbox">
+						<label for="p2errors">
+							<input type="hidden" name="param2_errors" value="false">
+							<input type="checkbox" name="param2_errors" id="p2errors" value="true">
+							Histogram Y
+						</label>
+					</div>
+				</fieldset>
+					
+			</div>
+
+			<div class="">
+
+				<fieldset>
+					<legend>Date range</legend>
+
+					<div class="inputrow">
+						<label for="datefrom" class="control-label">Date from:</label>
+						<div class="input-append">
+					      <input id="datefrom" name="datefrom" type="text" class="datepicker hasDatepicker" placeholder="date from">
+					      <span class="add-on"><i class="icon-calendar"></i></span>
+				    	</div>
+				    </div>
+
+				    <div class="inputrow">
+						<label for="dateto">Date to:</label>
+						<div class="input-append">
+					      <input id="dateto" name="dateto" type="text" class="datepicker hasDatepicker" placeholder="date to">
+					      <span class="add-on"><i class="icon-calendar"></i></span>
+				    	</div>
+			    	</div>
+		    	</fieldset>
+
+	   		</div>
+			<input type="submit" class="btn btn-block pull-left" value="Run macro">
+		</div>
+
+	</div>
+
+
+	<br>
+
+
+<div class="output pull-left">
+    <div id="graphdiv9" style="width:700px; height:300px;"></div>
+	<div class="clearfix"></div>
+	
+
+
+	<script type="text/javascript">
+		show(0)
+		function show(n)
+		{
+			$('#img-tabs a').removeClass('selected').eq(n).addClass('selected')
+			$('#charts #i1').hide().eq(n).show()
+		}
+	</script>
+
+                        
+      <div id="graphdiv2" style="width:700px; height:300px;"></div>
+
+
+     <div>
+        <span class="dyhelp"> <b> HOVER</b> over the graph to display values for specific dates</span>
+			 <br>
+        <span class="dyhelp"><b>CLICK AND DRAG</b> on the graph to zoom in on a specific date or y-value range</span>
+			 <br>
+        <span class="dyhelp"><b>DOUBLE CLICK</b> to reset to the default date range</span>
+			 <br>
+      </div>
+
+
+<script type="text/javascript">
+
+function histogramPlotter(e){
+                var ctx = e.drawingContext;
+                var points = e.points;
+                var y_bottom = e.dygraph.toDomYCoord(0);
+
+                var bar_width = 2/3 * (points[1].canvasx - points[0].canvasx);
+                ctx.fillStyle = e.color;
+
+                for (var i = 0; i < points.length; i++) {
+                  var p = points[i];
+                  var center_x = p.canvasx;  // center of the bar
+
+                  ctx.fillRect(center_x - bar_width / 2, p.canvasy,
+                               bar_width, y_bottom - p.canvasy);
+                  ctx.strokeRect(center_x - bar_width / 2, p.canvasy,
+                                 bar_width, y_bottom - p.canvasy);
+                }
+}
+$(function(){
+	var e;
+	var y;
+	$(".parameterx").click(function(){
+	var text = this.text;
+	switch(text){
+	case "Zenith angle":
+		e = "drvzd";
+		break;
+	case "Control Deviation of the Motors, DAQ data":
+		e = "drvdev_daq";
+		break;
+	case "Camera HV, DAQ data":
+		e = "camhv_daq";
+		break;
+	case "Camera DC, DAQ data":
+		e = "camdc_daq";
+		break;
+	case "Discriminator Threshold, DAQ data":
+		e = "camdt_daq";
+		break;
+	case "PD, DAQ data":
+		e = "campd_daq";
+		break;
+	case "Pixel Temperature Camera, DAQ data":
+		e = "campixtemp_daq";
+		break;
+	case "Pixel Temperature, DAQ data":
+		e = "meanpixtemp_daq";
+		break;
+	case "(Non-zero) Cluster Temperature":
+		e = "camclusttemp";
+		break;
+	case "VCELs bias, DAQ data":
+		e = "camvcelbias_daq";
+		break;
+	case "LV1 Temperature":
+		e = "camlv1temp";
+		break;
+	case "LV2 Temperature":
+		e = "camlv2temp";
+		break;
+	case "LV1 Humidity":
+		e = "camlv1hum";
+		break;
+	case "LV2 Humidity":
+		e = "camlv2hum";
+		break;
+	case "Camera Cooling: FCPTopLeft Temperature":
+		e = "camcoolfcptopleft";
+		break;
+	case "Camera Cooling: FCPBottRight Temperature":
+		e = "camcoolfcpbottright";
+		break;
+	case "Camera Cooling: RCPTopLeft Temperature":
+		e = "camcoolrcptopleft";
+		break;
+	case "Camera Cooling: RCPBottRight Temperature":
+		e = "camcoolrcpbottright";
+		break;
+	case "Camera Cooling: ChasiasTopLeft Temperature":
+		e = "camcoolchasiastopleft";
+		break;
+	case "Camera Cooling: ChasiasBottRight Temperature":
+		e = "camcoolchasiasbottright";
+		break;
+	case "Camera Cooling: ChasiasFTopLeft Temperature":
+		e = "camcoolchasiasftopleft";
+		break;
+	case "Camera Cooling: ChasiasFBottRight Temperature":
+		e = "camcoolchasiasfbottright";
+		break;
+	case "Camera Cooling: RearBottLeft Humidity":
+		e = "camcoolrearbottleft";
+		break;
+	case "Camera Cooling: RearTopLeft Humidity":
+		e = "camcoolreartopleft";
+		break;
+	case "Camera Cooling: FrontBottRight Humidity":
+		e = "camcoolfrontbottright";
+		break;
+	case "Camera Cooling: FrontTopRight Humidity":
+		e = "camcoolfronttopright";
+		break;		
+	case "AMC Number of Panels in Error State":
+		e = "amcerr";
+		break;		
+	case "L1 Trigger Rate (Before Prescaler)":
+		e = "l1t";
+		break;
+	case "L2 Trigger Rate (After Prescaler)":
+		e = "l2t";
+		break;
+	case "L2 Trigger Rate (After Prescaler), DAQ data":
+		e = "l2t_daq";
+		break;
+	case "Sum-Trigger-II Global Rate":
+		e = "sumt_globr";
+		break;
+	case "Sum-Trigger-II L3 Trigger Rate":
+		e = "sumt_l3";
+		break;
+	case "Sum-Trigger-II Working Thresholds":
+		e = "sumt_dtw";
+		break;
+	case "Sum-Trigger-II Clip board temperatures 1":
+		e = "sumt_cbt1";
+		break;
+	case "Sum-Trigger-II Clip board temperatures 2":
+		e = "sumt_cbt2";
+		break;
+	case "Sum-Trigger-II: AC current consumption":
+		e = "sumt_ac";
+		break;
+	case "Sum-Trigger-II Astro-board temperature":
+		e = "sumt_astrob";
+		break;
+	case "Cooling: VME fan trays temperature":
+		e = "cool_crate";
+		break;
+	case "Cooling: Heat exchangers internal temperatures":
+		e = "cool_rack";
+		break;
+	case "Calibration Box Temperature":
+		e = "calbtemp1";
+		break;
+	case "Calibration Box Temperature, next to heating plate":
+		e = "calbtemp2";
+		break;
+	case "Calibration Box Humidity":
+		e = "calbhum";
+		break;
+	case "Azimuthal Misspointing * Sin(Zenith)":
+		e = "sg_devaz";
+		break;
+	case "Zenith Misspointing":
+		e = "sg_devzd";
+		break;
+	case "Camera Centre X":
+		e = "sg_camcx";
+		break;
+	case "Camera Centre Y":
+		e = "sg_camcy";
+		break;
+	case "Number of Correlated Stars":
+		e = "sg_stars";
+		break;
+	case "Sky Brightness":
+		e = "sg_bright";
+		break;
+	case "Atmospheric Temperature":
+		e = "wea_temp";
+		break;
+	case "Atmospheric Humidity":
+		e = "wea_hum";
+		break;
+	case "Wind Speed":
+		e = "wea_ws";
+		break;
+	case "Wind Gusts":
+		e = "wea_gust";
+		break;
+	case "Seeing (from TNG)":
+		e = "wea_see";
+		break;
+	case "Dust concentration (from TNG)":
+		e = "wea_dust";
+		break;
+	case "Recievers Temperature":
+		e = "rec_temp";
+		break;
+	case "Trigger Delay, DAQ data":
+		e = "camtd_daq";
+		break;
+	case "IPR, DAQ data":
+		e = "camipr_daq";
+		break;
+	case "IPR Error, DAQ data":
+		e = "camiprerr_daq";
+		break;
+	case "Pyrometer, Cloudiness":
+		e = "pyro_cloud" ;
+		break;
+	case "Pyrometer, Sky Temperature":
+		e = "pyro_skyt";
+		break;
+	case "Laser, Transmission from 3km":
+		e = "las_trans3km";
+		break;
+	case "Laser, Transmission from 6km":
+		e = "las_trans6km";
+		break;
+	case "Laser, Transmission from 9km":
+		e = "las_trans9km";
+		break;
+	case "Laser, Transmission from 12km":
+		e = "las_trans12km";
+		break;
+	case "PSF from muons":
+		e = "muon_psf";
+		break;
+	case "Number of muons for PSF calc":
+		e = "muon_psfn";
+		break;
+	case "Mean muon size":
+		e = "muon_size";
+		break;
+	case "PSF from SBig, B filter":
+		e = "sbigpsf_b";
+		break;	
+	case "PSF from SBig, L filter":
+		e = "sbigpsf_l";
+		break;
+	case "Bias of Signal Extractor":
+		e = "bias_sig";
+		break;
+	case "Hit Fraction of Signal Events":
+		e = "hitfrac_sig";
+		break;
+	case "Calibration runs: Arrival Time":
+		e = "arrtm_cal";
+		break;
+	case "Interleaved runs: Arrival Time":
+		e = "arrtm_int";
+		break;
+	case "Signal events: Arrival Time":
+		e = "arrtm_sig";
+		break;
+	case "Calibration runs: Arrival Time RMS":
+		e = "arrtmrms_cal";
+		break;
+	case "Interleaved runs: Arrival Time RMS":
+		e = "arrtmrms_int";
+		break;
+	case "Signal events: Arrival Time RMS":
+		e = "arrtmrms_sig";
+		break;
+	case "Pedestal runs: Pedestal":
+		e = "ped_ped";
+		break;
+	case "Interleaved runs: Pedestal":
+		e = "ped_int";
+		break;
+	case "Interleaved runs: Number of Photoelectrons":
+		e = "npe_int";
+		break;
+	case "Pedestal runs: Pedestal RMS":
+		e = "pedrms_ped";
+		break;
+	case "Interleaved runs: Pedestal RMS":
+		e = "pedrms_int";
+		break;
+	case "Interleaved runs: C Factor":
+		e = "cfact_int";
+		break;
+	case "Calibration runs: Calibration Charge":
+		e = "calq_cal";
+		break;
+	case "Interleaved runs: Calibration Charge":
+		e = "calq_int";
+		break;
+	case "Charge for Signal Events":
+		e = "calq_sig";
+		break;
+default:
+		break;
+	}
+	
+$(".parametery").click(function(){
+	var tekst = this.text;
+	switch(tekst){
+	case "Zenith angle":
+		y = "drvzd";
+		break;
+	case "Control Deviation of the Motors, DAQ data":
+		y = "drvdev_daq";
+		break;
+	case "Camera HV, DAQ data":
+		y = "camhv_daq";
+		break;
+	case "Camera DC, DAQ data":
+		y = "camdc_daq";
+		break;
+	case "Discriminator Threshold, DAQ data":
+		y = "camdt_daq";
+		break;
+	case "PD, DAQ data":
+		y = "campd_daq";
+		break;
+	case "Pixel Temperature Camera, DAQ data":
+		y = "campixtemp_daq";
+		break;
+	case "Pixel Temperature, DAQ data":
+		y = "meanpixtemp_daq";
+		break;
+	case "(Non-zero) Cluster Temperature":
+		y = "camclusttemp";
+		break;
+	case "VCELs bias, DAQ data":
+		y = "camvcelbias_daq";
+		break;
+	case "LV1 Temperature":
+		y = "camlv1temp";
+		break;
+	case "LV2 Temperature":
+		y = "camlv2temp";
+		break;
+	case "LV1 Humidity":
+		y = "camlv1hum";
+		break;
+	case "LV2 Humidity":
+		y = "camlv2hum";
+		break;
+	case "Camera Cooling: FCPTopLeft Temperature":
+		y = "camcoolfcptopleft";
+		break;
+	case "Camera Cooling: FCPBottRight Temperature":
+		y = "camcoolfcpbottright";
+		break;
+	case "Camera Cooling: RCPTopLeft Temperature":
+		y = "camcoolrcptopleft";
+		break;
+	case "Camera Cooling: RCPBottRight Temperature":
+		y = "camcoolrcpbottright";
+		break;
+	case "Camera Cooling: ChasiasTopLeft Temperature":
+		y = "camcoolchasiastopleft";
+		break;
+	case "Camera Cooling: ChasiasBottRight Temperature":
+		y = "camcoolchasiasbottright";
+		break;
+	case "Camera Cooling: ChasiasFTopLeft Temperature":
+		y = "camcoolchasiasftopleft";
+		break;
+	case "Camera Cooling: ChasiasFBottRight Temperature":
+		y = "camcoolchasiasfbottright";
+		break;
+	case "Camera Cooling: RearBottLeft Humidity":
+		y = "camcoolrearbottleft";
+		break;
+	case "Camera Cooling: RearTopLeft Humidity":
+		y = "camcoolreartopleft";
+		break;
+	case "Camera Cooling: FrontBottRight Humidity":
+		y = "camcoolfrontbottright";
+		break;
+	case "Camera Cooling: FrontTopRight Humidity":
+		y = "camcoolfronttopright";
+		break;		
+	case "AMC Number of Panels in Error State":
+		y = "amcerr";
+		break;		
+	case "L1 Trigger Rate (Before Prescaler)":
+		y = "l1t";
+		break;
+	case "L2 Trigger Rate (After Prescaler)":
+		y = "l2t";
+		break;
+	case "L2 Trigger Rate (After Prescaler), DAQ data":
+		y = "l2t_daq";
+		break;
+	case "Sum-Trigger-II Global Rate":
+		y = "sumt_globr";
+		break;
+	case "Sum-Trigger-II L3 Trigger Rate":
+		y = "sumt_l3";
+		break;
+	case "Sum-Trigger-II Working Thresholds":
+		y = "sumt_dtw";
+		break;
+	case "Sum-Trigger-II Clip board temperatures 1":
+		y = "sumt_cbt1";
+		break;
+	case "Sum-Trigger-II Clip board temperatures 2":
+		y = "sumt_cbt2";
+		break;
+	case "Sum-Trigger-II: AC current consumption":
+		y = "sumt_ac";
+		break;
+	case "Sum-Trigger-II Astro-board temperature":
+		y = "sumt_astrob";
+		break;
+	case "Cooling: VME fan trays temperature":
+		y = "cool_crate";
+		break;
+	case "Cooling: Heat exchangers internal temperatures":
+		y = "cool_rack";
+		break;
+	case "Calibration Box Temperature":
+		y = "calbtemp1";
+		break;
+	case "Calibration Box Temperature, next to heating plate":
+		y = "calbtemp2";
+		break;
+	case "Calibration Box Humidity":
+		y = "calbhum";
+		break;
+	case "Azimuthal Misspointing * Sin(Zenith)":
+		y = "sg_devaz";
+		break;
+	case "Zenith Misspointing":
+		y = "sg_devzd";
+		break;
+	case "Camera Centre X":
+		y = "sg_camcx";
+		break;
+	case "Camera Centre Y":
+		y = "sg_camcy";
+		break;
+	case "Number of Correlated Stars":
+		y = "sg_stars";
+		break;
+	case "Sky Brightness":
+		y = "sg_bright";
+		break;
+	case "Atmospheric Temperature":
+		y = "wea_temp";
+		break;
+	case "Atmospheric Humidity":
+		y = "wea_hum";
+		break;
+	case "Wind Speed":
+		y = "wea_ws";
+		break;
+	case "Wind Gusts":
+		y = "wea_gust";
+		break;
+	case "Seeing (from TNG)":
+		y = "wea_see";
+		break;
+	case "Dust concentration (from TNG)":
+		y = "wea_dust";
+		break;
+	case "Recievers Temperature":
+		y = "rec_temp";
+		break;
+	case "Trigger Delay, DAQ data":
+		y = "camtd_daq";
+		break;
+	case "IPR, DAQ data":
+		y = "camipr_daq";
+		break;
+	case "IPR Error, DAQ data":
+		y = "camiprerr_daq";
+		break;
+	case "Pyrometer, Cloudiness":
+		y = "pyro_cloud" ;
+		break;
+	case "Pyrometer, Sky Temperature":
+		y = "pyro_skyt";
+		break;
+	case "Laser, Transmission from 3km":
+		y = "las_trans3km";
+		break;
+	case "Laser, Transmission from 6km":
+		y = "las_trans6km";
+		break;
+	case "Laser, Transmission from 9km":
+		y = "las_trans9km";
+		break;
+	case "Laser, Transmission from 12km":
+		y = "las_trans12km";
+		break;
+	case "PSF from muons":
+		y = "muon_psf";
+		break;
+	case "Number of muons for PSF calc":
+		y = "muon_psfn";
+		break;
+	case "Mean muon size":
+		y = "muon_size";
+		break;
+	case "PSF from SBig, B filter":
+		y = "sbigpsf_b";
+		break;	
+	case "PSF from SBig, L filter":
+		y = "sbigpsf_l";
+		break;
+	case "Bias of Signal Extractor":
+		y = "bias_sig";
+		break;
+	case "Hit Fraction of Signal Events":
+		y = "hitfrac_sig";
+		break;
+	case "Calibration runs: Arrival Time":
+		y = "arrtm_cal";
+		break;
+	case "Interleaved runs: Arrival Time":
+		y = "arrtm_int";
+		break;
+	case "Signal events: Arrival Time":
+		y = "arrtm_sig";
+		break;
+	case "Calibration runs: Arrival Time RMS":
+		y = "arrtmrms_cal";
+		break;
+	case "Interleaved runs: Arrival Time RMS":
+		y = "arrtmrms_int";
+		break;
+	case "Signal events: Arrival Time RMS":
+		y = "arrtmrms_sig";
+		break;
+	case "Pedestal runs: Pedestal":
+		y = "ped_ped";
+		break;
+	case "Interleaved runs: Pedestal":
+		y = "ped_int";
+		break;
+	case "Interleaved runs: Number of Photoelectrons":
+		y = "npe_int";
+		break;
+	case "Pedestal runs: Pedestal RMS":
+		y = "pedrms_ped";
+		break;
+	case "Interleaved runs: Pedestal RMS":
+		y = "pedrms_int";
+		break;
+	case "Interleaved runs: C Factor":
+		y = "cfact_int";
+		break;
+	case "Calibration runs: Calibration Charge":
+		y = "calq_cal";
+		break;
+	case "Interleaved runs: Calibration Charge":
+		y = "calq_int";
+		break;
+	case "Charge for Signal Events":
+		y = "calq_sig";
+		break;
+default:
+		break;
+	}
+	 
+	$('.btn.btn-block.pull-left').click(function(){
+    var URL1 = "http://symmetry.fesb.hr/MAGICLTM/" + e;
+	var URL2 = "http://symmetry.fesb.hr/MAGICLTM/" + y + "y";
+	if($('#p1errors').is(":checked")){
+        g9 = new Dygraph(
+             document.getElementById("graphdiv9"), 
+			 URL1,
+				   {
+				    pointSize: 2,
+					digitsAfterDecimal: 3,
+					drawPoints: true,
+					highlightCircleSize: 4,
+					title: text,
+					ylabel: "Value",
+					xlabel:  "Date",
+					includeZero: true,
+					sigma: 1.0,
+					connectSeparatedPoints: false,
+					plotter: [histogramPlotter]
+				   }
+        );
+		}else{
+		g2 = new Dygraph(
+			document.getElementById("graphdiv9"), 
+			 URL1,
+				   {
+				    pointSize: 2,
+					digitsAfterDecimal: 3,
+					drawPoints: true,
+					highlightCircleSize: 4,
+					title: text,
+					ylabel: "Value",
+					xlabel:  "Date",
+					includeZero: true,
+					sigma: 1.0,
+					connectSeparatedPoints: false,
+					}
+        );
+		}
+	if($('#p2errors').is(":checked")){	
+        g3 = new Dygraph(
+             document.getElementById("graphdiv2"), 
+			 URL2,
+				   {
+				    pointSize: 2,
+					digitsAfterDecimal: 3,
+					drawPoints: true,
+					highlightCircleSize: 4,
+					title: tekst,
+					ylabel: "Value",
+					xlabel:  "Date",
+					includeZero: true,
+					sigma: 1.0,
+					connectSeparatedPoints: false,
+					plotter: [histogramPlotter]
+				   }
+        );}	
+		else{
+		g4 = new Dygraph(
+			document.getElementById("graphdiv2"), 
+			 URL2,
+				   {
+				    pointSize: 2,
+					digitsAfterDecimal: 3,
+					drawPoints: true,
+					highlightCircleSize: 4,
+					title: tekst,
+					ylabel: "Value",
+					xlabel:  "Date",
+					includeZero: true,
+					sigma: 1.0,
+					connectSeparatedPoints: false,
+					}
+        );
+		}		
+	
+			});
+		});
+	});
+});
+</script>
+</div>
+
+
+<script>
+$('#search').change(filter).keyup(filter)
+function filter(){
+	var str = $('#search').val();
+	if(str!=""){
+		$('#data tr:gt(0)').hide();
+		$('#data tr:gt(0)').each(function(){
+			var tr = $(this);
+			if( tr.html().indexOf(str)>1)
+			{
+				tr.stop().show();
+			} 
+		})
+	} else{
+		$('#data tr:gt(0)').show()
+	}
+}
+
+$('#data').tablecloth({sortable:true});
+
+$('#datatable').hide()
+
+function showTable()
+{
+	$('#datatable').toggle();
+}
+
+$(document).on("propertychange keyup input paste keypress", '#inproll', function (e) {
+   var code = e.keyCode || e.which;
+var frm_element = document.getElementById('inproll');
+g2.adjustRoll(frm_element.value);
+g3.adjustRoll(frm_element.value);
+   if (code == 10 || code == 13) {
+       return false;
+   }
+});
+
+
+</script>
+
+
+
+	<script type="text/javascript">
+		$('#param2-type').change(function(){
+			var val = $(this).val();
+			//alert(val)
+			if(val=="Mean" || val=="Median")
+			{
+				$('#p2errors').parent().show()
+			} else {
+				$('#p2errors').attr('checked',null).parent().hide()
+			}
+		})
+	</script>
+
+</form>
+
+<script>
+	  $('.selectpicker').selectpicker();
+	  //$('.select2').select2();
+
+	  $('.datepicker').datepicker({
+	  	changeMonth: true,
+      	changeYear: true,
+      	dateFormat:"yy-mm-dd",
+      	maxDate:"2016-04-15",
+      	minDate:"2016-01-15"
+	  })
+
+	  var maxdate = '2016-05-17'
+	  var mindate = '2012-10-16'
+	  var dateParts = maxdate.match(/(\d+)/g)
+      var dateto = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);  
+      dateParts = mindate.match(/(\d+)/g)
+      var datefrom = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]); 
+
+
+	  $('#dateto').datepicker('setDate', dateto)
+	  $('#datefrom').datepicker('setDate', datefrom)
+	  $('#dateto').datepicker('setDate', '2016-04-15')
+
+	  $('#input-form').submit(function(){
+
+	  	$.post('?ajax-action=macro', $(this).serialize(), function(data){
+	  		$('#output').fadeOut(200,function(){$(this).html(data).fadeIn(200)})
+	  	})	
+	  	return false;
+	  })
+</script>
+
+
+		<div class="clear"></div>
+                <fieldset>
+                <legend>  </legend>
+                <p> For questions, please contact MAGIC <a href="mailto:magic-datacheck@irb.hr">datacheck group</a>
+                </p></fieldset>
+		<br>
+		<p>Izradio Josip Matić</p>
+		<br>
+		</div>
+		<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all ui-state-disabled" title="Prev"><span class="ui-icon ui-icon-circle-triangle-w">Prev</span></a><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="Next"><span class="ui-icon ui-icon-circle-triangle-e">Next</span></a><div class="ui-datepicker-title"><select class="ui-datepicker-month" data-handler="selectMonth" data-event="change"><option value="0" selected="selected">Jan</option><option value="1">Feb</option><option value="2">Mar</option><option value="3">Apr</option></select><select class="ui-datepicker-year" data-handler="selectYear" data-event="change"><option value="2015" selected="selected">2015</option></select></div></div><table class="ui-datepicker-calendar"><thead><tr><th class="ui-datepicker-week-end"><span title="Sunday">Su</span></th><th><span title="Monday">Mo</span></th><th><span title="Tuesday">Tu</span></th><th><span title="Wednesday">We</span></th><th><span title="Thursday">Th</span></th><th><span title="Friday">Fr</span></th><th class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">1</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">2</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">3</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">4</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">5</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">6</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">7</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">8</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">9</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">10</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">11</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">12</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">13</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">14</span></td><td class="  ui-datepicker-current-day" data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default ui-state-active" href="#">15</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">16</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">17</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">18</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">19</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">20</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">21</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">22</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">23</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">24</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">25</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">26</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">27</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">28</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">29</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">30</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="0" data-year="2015"><a class="ui-state-default" href="#">31</a></td></tr></tbody></table></div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

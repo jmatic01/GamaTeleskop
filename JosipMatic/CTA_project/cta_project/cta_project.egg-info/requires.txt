@@ -1,0 +1,7 @@
+pyramid
+WebError
+pymongo
+pyramid_mako
+pyramid_chameleon
+pyramid_debugtoolbar
+waitress

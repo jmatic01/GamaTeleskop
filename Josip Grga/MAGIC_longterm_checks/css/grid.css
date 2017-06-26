@@ -1,0 +1,71 @@
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/grid.css">
+h4 {
+  margin-top: 25px;
+}
+.row {
+  margin-bottom: 20px;
+}
+.row .row {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+[class*="col-"] {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86,61,124,.2);
+
+}
+
+.lead a{
+  color: #fff;
+}
+
+hr {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.pageHeader > .graphTitles
+{
+	display:flex;
+	background:darkgrey;
+	margin-right:5px;
+	font-size:130%;
+	padding: 5px;
+}
+select{
+	border:1px solid #777;
+	color:#565656;
+	padding-left:.6rem;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	appearance:none;
+	}
+	
+.pageHeader > .graphTitles > .drop-down{
+	border: 1px solid #ccc;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("arrow1.jpg") no-repeat 100% 50%;
+}
+
+.pageHeader > .graphTitles > .drop-down::after{
+	
+}
+.pageHeader > .graphTitles > .drop-down > select {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+.pageHeader > .graphTitles > .drop-down > option {
+	background:transparent;
+	padding: 5px;
+}
+.pageHeader > .graphTitles > #links{
+	margin-left:15px;	
+	
+}
